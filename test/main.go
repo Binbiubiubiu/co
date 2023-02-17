@@ -1,9 +1,13 @@
 package main
 
 import (
-	. "github.com/Binbiubiubiu/co"
+	"fmt"
+
+	co "github.com/Binbiubiubiu/co"
 )
 
 func main() {
-	println(GreenBright("Hello"), BgCyanBright(RedBright("Binbiubiubiu")))
+	println(co.GreenBright("Hello"), co.BgCyanBright(co.RedBright("Binbiubiubiu")))
+	var a = co.UseColors(true)
+	fmt.Printf("%v\n", a.BgBlueBright("323"))
 }
