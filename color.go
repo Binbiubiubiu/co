@@ -1,179 +1,186 @@
 package co
 
 type Colors struct {
-	Reset               ColorFunc
-	Bold                ColorFunc
-	Dim                 ColorFunc
-	Italic              ColorFunc
-	Underline           ColorFunc
-	Inverse             ColorFunc
-	Hidden              ColorFunc
-	Strikethrough       ColorFunc
-	Black               ColorFunc
-	Red                 ColorFunc
-	Green               ColorFunc
-	Yellow              ColorFunc
-	Blue                ColorFunc
-	Magenta             ColorFunc
-	Cyan                ColorFunc
-	White               ColorFunc
-	Gray                ColorFunc
-	BgBlack             ColorFunc
-	BgRed               ColorFunc
-	BgGreen             ColorFunc
-	BgYellow            ColorFunc
-	BgBlue              ColorFunc
-	BgMagenta           ColorFunc
-	BgCyan              ColorFunc
-	BgWhite             ColorFunc
-	BlackBright         ColorFunc
-	RedBright           ColorFunc
-	GreenBright         ColorFunc
-	YellowBright        ColorFunc
-	BlueBright          ColorFunc
-	MagentaBright       ColorFunc
-	RedBrCyanBrightight ColorFunc
-	WhiteBright         ColorFunc
-	BgBlackBright       ColorFunc
-	BgRedBright         ColorFunc
-	BgGreenBright       ColorFunc
-	BgYellowBright      ColorFunc
-	BgBlueBright        ColorFunc
-	BgMagentaBright     ColorFunc
-	BgCyanBright        ColorFunc
-	BgWhiteBright       ColorFunc
+	Reset           ColorFunc
+	Bold            ColorFunc
+	Dim             ColorFunc
+	Italic          ColorFunc
+	Underline       ColorFunc
+	Inverse         ColorFunc
+	Hidden          ColorFunc
+	Strikethrough   ColorFunc
+	Black           ColorFunc
+	Red             ColorFunc
+	Green           ColorFunc
+	Yellow          ColorFunc
+	Blue            ColorFunc
+	Magenta         ColorFunc
+	Cyan            ColorFunc
+	White           ColorFunc
+	Gray            ColorFunc
+	BgBlack         ColorFunc
+	BgRed           ColorFunc
+	BgGreen         ColorFunc
+	BgYellow        ColorFunc
+	BgBlue          ColorFunc
+	BgMagenta       ColorFunc
+	BgCyan          ColorFunc
+	BgWhite         ColorFunc
+	BlackBright     ColorFunc
+	RedBright       ColorFunc
+	GreenBright     ColorFunc
+	YellowBright    ColorFunc
+	BlueBright      ColorFunc
+	MagentaBright   ColorFunc
+	CyanBright      ColorFunc
+	WhiteBright     ColorFunc
+	BgBlackBright   ColorFunc
+	BgRedBright     ColorFunc
+	BgGreenBright   ColorFunc
+	BgYellowBright  ColorFunc
+	BgBlueBright    ColorFunc
+	BgMagentaBright ColorFunc
+	BgCyanBright    ColorFunc
+	BgWhiteBright   ColorFunc
 }
 
 func noop(s string) string {
 	return s
 }
 
-var noColors = Colors{
-	Reset:               noop,
-	Bold:                noop,
-	Dim:                 noop,
-	Italic:              noop,
-	Underline:           noop,
-	Inverse:             noop,
-	Hidden:              noop,
-	Strikethrough:       noop,
-	Black:               noop,
-	Red:                 noop,
-	Green:               noop,
-	Yellow:              noop,
-	Blue:                noop,
-	Magenta:             noop,
-	Cyan:                noop,
-	White:               noop,
-	Gray:                noop,
-	BgBlack:             noop,
-	BgRed:               noop,
-	BgGreen:             noop,
-	BgYellow:            noop,
-	BgBlue:              noop,
-	BgMagenta:           noop,
-	BgCyan:              noop,
-	BgWhite:             noop,
-	BlackBright:         noop,
-	RedBright:           noop,
-	GreenBright:         noop,
-	YellowBright:        noop,
-	BlueBright:          noop,
-	MagentaBright:       noop,
-	RedBrCyanBrightight: noop,
-	WhiteBright:         noop,
-	BgBlackBright:       noop,
-	BgRedBright:         noop,
-	BgGreenBright:       noop,
-	BgYellowBright:      noop,
-	BgBlueBright:        noop,
-	BgMagentaBright:     noop,
-	BgCyanBright:        noop,
-	BgWhiteBright:       noop,
+// Create a color utility function with a useColor property
+func UseColors(useColor bool) Colors {
+	if useColor {
+		return Colors{
+			Reset:           build(0, 0),
+			Bold:            buildWithReplace(1, 22, "\x1b[22m\x1b[1m"),
+			Dim:             buildWithReplace(2, 22, "\x1b[22m\x1b[2m"),
+			Italic:          build(3, 23),
+			Underline:       build(4, 24),
+			Inverse:         build(7, 27),
+			Hidden:          build(8, 28),
+			Strikethrough:   build(9, 29),
+			Black:           build(30, 39),
+			Red:             build(31, 39),
+			Green:           build(32, 39),
+			Yellow:          build(33, 39),
+			Blue:            build(34, 39),
+			Magenta:         build(35, 39),
+			Cyan:            build(36, 39),
+			White:           build(37, 39),
+			Gray:            build(90, 39),
+			BgBlack:         build(40, 49),
+			BgRed:           build(41, 49),
+			BgGreen:         build(42, 49),
+			BgYellow:        build(43, 49),
+			BgBlue:          build(44, 49),
+			BgMagenta:       build(45, 49),
+			BgCyan:          build(46, 49),
+			BgWhite:         build(47, 49),
+			BlackBright:     build(90, 39),
+			RedBright:       build(91, 39),
+			GreenBright:     build(92, 39),
+			YellowBright:    build(93, 39),
+			BlueBright:      build(94, 39),
+			MagentaBright:   build(95, 39),
+			CyanBright:      build(96, 39),
+			WhiteBright:     build(97, 39),
+			BgBlackBright:   build(100, 49),
+			BgRedBright:     build(101, 49),
+			BgGreenBright:   build(102, 49),
+			BgYellowBright:  build(103, 49),
+			BgBlueBright:    build(104, 49),
+			BgMagentaBright: build(105, 49),
+			BgCyanBright:    build(106, 49),
+			BgWhiteBright:   build(107, 49),
+		}
+	} else {
+		return Colors{
+			Reset:           noop,
+			Bold:            noop,
+			Dim:             noop,
+			Italic:          noop,
+			Underline:       noop,
+			Inverse:         noop,
+			Hidden:          noop,
+			Strikethrough:   noop,
+			Black:           noop,
+			Red:             noop,
+			Green:           noop,
+			Yellow:          noop,
+			Blue:            noop,
+			Magenta:         noop,
+			Cyan:            noop,
+			White:           noop,
+			Gray:            noop,
+			BgBlack:         noop,
+			BgRed:           noop,
+			BgGreen:         noop,
+			BgYellow:        noop,
+			BgBlue:          noop,
+			BgMagenta:       noop,
+			BgCyan:          noop,
+			BgWhite:         noop,
+			BlackBright:     noop,
+			RedBright:       noop,
+			GreenBright:     noop,
+			YellowBright:    noop,
+			BlueBright:      noop,
+			MagentaBright:   noop,
+			CyanBright:      noop,
+			WhiteBright:     noop,
+			BgBlackBright:   noop,
+			BgRedBright:     noop,
+			BgGreenBright:   noop,
+			BgYellowBright:  noop,
+			BgBlueBright:    noop,
+			BgMagentaBright: noop,
+			BgCyanBright:    noop,
+			BgWhiteBright:   noop,
+		}
+	}
 }
 
-var colors = Colors{
-	Reset,
-	Bold,
-	Dim,
-	Italic,
-	Underline,
-	Inverse,
-	Hidden,
-	Strikethrough,
-	Black,
-	Red,
-	Green,
-	Yellow,
-	Blue,
-	Magenta,
-	Cyan,
-	White,
-	Gray,
-	BgBlack,
-	BgRed,
-	BgGreen,
-	BgYellow,
-	BgBlue,
-	BgMagenta,
-	BgCyan,
-	BgWhite,
-	BlackBright,
-	RedBright,
-	GreenBright,
-	YellowBright,
-	BlueBright,
-	MagentaBright,
-	RedBrCyanBrightight,
-	WhiteBright,
-	BgBlackBright,
-	BgRedBright,
-	BgGreenBright,
-	BgYellowBright,
-	BgBlueBright,
-	BgMagentaBright,
-	BgCyanBright,
-	BgWhiteBright,
-}
+var colors = CreateColors()
 
-var Reset = build(0, 0)
-var Bold = buildWithReplace(1, 22, "\x1b[22m\x1b[1m")
-var Dim = buildWithReplace(2, 22, "\x1b[22m\x1b[2m")
-var Italic = build(3, 23)
-var Underline = build(4, 24)
-var Inverse = build(7, 27)
-var Hidden = build(8, 28)
-var Strikethrough = build(9, 29)
-var Black = build(30, 39)
-var Red = build(31, 39)
-var Green = build(32, 39)
-var Yellow = build(33, 39)
-var Blue = build(34, 39)
-var Magenta = build(35, 39)
-var Cyan = build(36, 39)
-var White = build(37, 39)
-var Gray = build(90, 39)
-var BgBlack = build(40, 49)
-var BgRed = build(41, 49)
-var BgGreen = build(42, 49)
-var BgYellow = build(43, 49)
-var BgBlue = build(44, 49)
-var BgMagenta = build(45, 49)
-var BgCyan = build(46, 49)
-var BgWhite = build(47, 49)
-var BlackBright = build(90, 39)
-var RedBright = build(91, 39)
-var GreenBright = build(92, 39)
-var YellowBright = build(93, 39)
-var BlueBright = build(94, 39)
-var MagentaBright = build(95, 39)
-var RedBrCyanBrightight = build(96, 39)
-var WhiteBright = build(97, 39)
-var BgBlackBright = build(100, 49)
-var BgRedBright = build(101, 49)
-var BgGreenBright = build(102, 49)
-var BgYellowBright = build(103, 49)
-var BgBlueBright = build(104, 49)
-var BgMagentaBright = build(105, 49)
-var BgCyanBright = build(106, 49)
-var BgWhiteBright = build(107, 49)
+var Reset = colors.Reset
+var Bold = colors.Bold
+var Dim = colors.Dim
+var Italic = colors.Italic
+var Underline = colors.Underline
+var Inverse = colors.Inverse
+var Hidden = colors.Hidden
+var Strikethrough = colors.Strikethrough
+var Black = colors.Black
+var Red = colors.Red
+var Green = colors.Green
+var Yellow = colors.Yellow
+var Blue = colors.Blue
+var Magenta = colors.Magenta
+var Cyan = colors.Cyan
+var White = colors.White
+var Gray = colors.Gray
+var BgBlack = colors.BgBlack
+var BgRed = colors.BgRed
+var BgGreen = colors.BgGreen
+var BgYellow = colors.BgYellow
+var BgBlue = colors.BgBlue
+var BgMagenta = colors.BgMagenta
+var BgCyan = colors.BgCyan
+var BgWhite = colors.BgWhite
+var BlackBright = colors.BlackBright
+var RedBright = colors.RedBright
+var GreenBright = colors.GreenBright
+var YellowBright = colors.YellowBright
+var BlueBright = colors.BlueBright
+var MagentaBright = colors.MagentaBright
+var CyanBright = colors.CyanBright
+var WhiteBright = colors.WhiteBright
+var BgBlackBright = colors.BgBlackBright
+var BgRedBright = colors.BgRedBright
+var BgGreenBright = colors.BgGreenBright
+var BgYellowBright = colors.BgYellowBright
+var BgBlueBright = colors.BgBlueBright
+var BgMagentaBright = colors.BgMagentaBright
+var BgCyanBright = colors.BgCyanBright
+var BgWhiteBright = colors.BgWhiteBright

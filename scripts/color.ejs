@@ -9,15 +9,21 @@ func noop(s string) string {
 	return s
 }
 
-var noColors = Colors{
-<% colors.forEach(function (color) { %><%= color.name %>:noop,
-<% }) %>
+// Create a color utility function with a useColor property
+func UseColors(useColor bool) Colors {
+	if useColor {
+		return Colors{<% colors.forEach(function (color) { %>
+				<%= color.name %> : build<% if (color.replace) { %>WithReplace<% } %>(<%= color.open %>, <%= color.close %><% if (color.replace) { %>, <%- color.replace %><% } %>),<% }) %>
+		}
+	} else {
+		return Colors{
+			<% colors.forEach(function (color) { %><%= color.name %>:noop,
+				<% }) %>
+		}
+	}
 }
 
-var colors = Colors{
-<% colors.forEach(function (color) { %> <%= color.name %>,
-<% }) %>
-}
+var colors = CreateColors();
 <% colors.forEach(function (color) { %>
-var <%= color.name %> = build<% if (color.replace) { %>WithReplace<% } %>(<%= color.open %>, <%= color.close %><% if (color.replace) { %>, <%- color.replace %><% } %>)<% }) %>
+var <%= color.name %> = colors.<%= color.name %><% }) %>
     

@@ -23,7 +23,7 @@ var (
 
 func replaceClose(i int, str string, close string, replace string) string {
 	head := substring(str, 0, i) + replace
-	tail := substring(str, i+len(close), len(str)-1)
+	tail := substring(str, i+len(close), len(str))
 	next := strings.Index(tail, close)
 	if next < 0 {
 		return head + tail
@@ -59,15 +59,6 @@ func buildWithReplace(open int, close int, replace string) ColorFunc {
 
 func build(open int, close int) ColorFunc {
 	return buildWithReplace(open, close, "")
-}
-
-// Create a color utility function with a useColor property
-func UseColors(useColor bool) Colors {
-	if useColor {
-		return colors
-	} else {
-		return noColors
-	}
 }
 
 // Create a color tool function

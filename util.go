@@ -24,8 +24,16 @@ func substring(source string, start int, end int) string {
 	var r = []rune(source)
 	length := len(r)
 
-	if start < 0 || end > length || start > end {
+	if start > end {
 		return ""
+	}
+
+	if start < 0 {
+		start = 0
+	}
+
+	if end > length {
+		end = length
 	}
 
 	if start == 0 && end == length {

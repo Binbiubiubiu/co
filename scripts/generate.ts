@@ -42,7 +42,7 @@ const colors: Array<Color> = [
   { name: "YellowBright", open: 93, close: 39 },
   { name: "BlueBright", open: 94, close: 39 },
   { name: "MagentaBright", open: 95, close: 39 },
-  { name: "RedBrCyanBrightight", open: 96, close: 39 },
+  { name: "CyanBright", open: 96, close: 39 },
   { name: "WhiteBright", open: 97, close: 39 },
   { name: "BgBlackBright", open: 100, close: 49 },
   { name: "BgRedBright", open: 101, close: 49 },
