@@ -23,6 +23,21 @@ func main() {
 
 ```
 
+## Branch
+
+```sh
+$ go test -bench=.   
+goos: darwin
+goarch: amd64
+pkg: github.com/Binbiubiubiu/co
+cpu: Intel(R) Core(TM) i7-7820HQ CPU @ 2.90GHz
+Benchmark_co-8                   1950331               604.6 ns/op
+Benchmark_fatih_color-8           524019              2020 ns/op
+Benchmark_gookit_color-8         1516188               793.7 ns/op
+PASS
+ok      github.com/Binbiubiubiu/co      6.738s
+```
+
 ## Thanks
 
 [colorette](https://github.com/jorgebucaran/colorette)  🌈Easily set your terminal text color & styles.
