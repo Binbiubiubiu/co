@@ -79,20 +79,20 @@ func Test_empty(t *testing.T) {
 func Benchmark_co(b *testing.B) {
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
-		fmt.Sprintf("%s%s%s", eColor.Yellow("yellow"), eColor.Bold(eColor.Cyan("cyan")), eColor.Red("red"))
+		_ = fmt.Sprintf("%s%s%s", eColor.Yellow("yellow"), eColor.Bold(eColor.Cyan("cyan")), eColor.Red("red"))
 	}
 }
 
 func Benchmark_fatih_color(b *testing.B) {
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
-		fmt.Sprintf("%s%s%s", fatihColor.YellowString("yellow"), fatihColor.New(fatihColor.FgCyan, fatihColor.Bold).Sprint("cyan"), fatihColor.RedString("red"))
+		_ = fmt.Sprintf("%s%s%s", fatihColor.YellowString("yellow"), fatihColor.New(fatihColor.FgCyan, fatihColor.Bold).Sprint("cyan"), fatihColor.RedString("red"))
 	}
 }
 
 func Benchmark_gookit_color(b *testing.B) {
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
-		fmt.Sprintf("%s%s%s", gookitColor.Yellow.Render("yellow"), gookitColor.Style{gookitColor.FgCyan, gookitColor.OpBold}.Render("cyan"), gookitColor.Red.Render("red"))
+		_ = fmt.Sprintf("%s%s%s", gookitColor.Yellow.Render("yellow"), gookitColor.Style{gookitColor.FgCyan, gookitColor.OpBold}.Render("cyan"), gookitColor.Red.Render("red"))
 	}
 }

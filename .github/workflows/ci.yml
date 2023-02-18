@@ -42,4 +42,7 @@ jobs:
     - name: Run golangci-lint
       uses: golangci/golangci-lint-action@v3
 
+    - name: Run test
+      run: go test -v
+
     
