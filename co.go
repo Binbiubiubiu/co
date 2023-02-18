@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"os"
 	"runtime"
-	"strings"
 
 	tty "github.com/mattn/go-isatty"
 )
@@ -21,21 +20,21 @@ var (
 		(isForced || (IS_WINDOWS && !isDumbTerminal) || isCompatibleTerminal || isCI)
 )
 
-func replaceClose(i int, str string, close string, replace string) string {
-	head := substring(str, 0, i) + replace
-	tail := substring(str, i+len(close), len(str))
-	next := strings.Index(tail, close)
+func replaceClose(i int, source string, close string, replace string) string {
+	head := substring(source, 0, i) + replace
+	tail := substring(source, i+lenRune(close))
+	next := indexOf(tail, close)
 	if next < 0 {
 		return head + tail
 	}
 	return head + replaceClose(next, tail, close, replace)
 }
 
-func clearBleed(i int, str string, open string, close string, replace string) string {
+func clearBleed(i int, source string, open string, close string, replace string) string {
 	if i < 0 {
-		return open + str + close
+		return open + source + close
 	}
-	return open + replaceClose(i, str, close, replace) + close
+	return open + replaceClose(i, source, close, replace) + close
 }
 
 func filterEmpty(open string, close string, replace string) ColorFunc {
@@ -46,7 +45,7 @@ func filterEmpty(open string, close string, replace string) ColorFunc {
 		if isEmpty(replace) {
 			replace = open
 		}
-		return clearBleed(indexOf(input, close, len(open)), input, open, close, replace)
+		return clearBleed(indexOf(input, close, lenRune(open)), input, open, close, replace)
 	}
 }
 

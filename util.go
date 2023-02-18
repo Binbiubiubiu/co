@@ -2,7 +2,6 @@ package co
 
 import (
 	"os"
-	"strings"
 )
 
 func contains[T comparable](collection []T, element T) bool {
@@ -20,9 +19,13 @@ func isEmpty[T comparable](v T) bool {
 	return zero == v
 }
 
-func substring(source string, start int, end int) string {
-	var r = []rune(source)
+func substring(source string, start int, suffix ...int) string {
+	r := []rune(source)
 	length := len(r)
+	end := length
+	if len(suffix) > 0 {
+		end = suffix[0]
+	}
 
 	if start > end {
 		return ""
@@ -53,14 +56,48 @@ func hasEnv(vars ...string) bool {
 	return false
 }
 
-func indexOf(input string, substr string, at int) int {
-	if at >= len(input) {
+func lenRune(s string) int {
+	return len([]rune(s))
+}
+
+func indexOf(source string, substr string, args ...int) int {
+	at := 0
+	if len(args) > 0 {
+		at = args[0]
+	}
+
+	input := []rune(source)
+	iLen := len(input)
+	if at >= iLen {
 		return -1
 	}
-	input = substring(input, at, len(input))
-	i := strings.Index(input, substr)
-	if i < 0 {
-		return i
+	input = input[at:]
+	search := []rune(substr)
+	sLen := len(search)
+	i, j := 0, 0
+	ok := false
+	for i+sLen < iLen {
+		if input[i] != search[j] {
+			i++
+			continue
+		}
+		z := i
+		for j < sLen {
+			if input[z] != search[j] {
+				j = 0
+				break
+			}
+			z++
+			j++
+		}
+		if j == sLen {
+			ok = true
+			break
+		}
+		i++
 	}
-	return i + at
+	if ok {
+		return i + at
+	}
+	return -1
 }

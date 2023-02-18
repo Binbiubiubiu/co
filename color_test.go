@@ -68,8 +68,8 @@ func Test_simple(t *testing.T) {
 }
 
 func Test_nesting(t *testing.T) {
-	assert.Equal(t, eColor.Bold("bold "+eColor.Red("red "+eColor.Dim("dim")+" red")+" bold"), "\x1B[1mbold \x1B[31mred \x1B[2mdim\x1B[22m\x1B[1m red\x1B[39m bold\x1B[22m")
-	assert.Equal(t, eColor.Magenta("magenta "+eColor.Yellow("yellow "+eColor.Cyan("cyan")+" "+eColor.Red("red")+" "+eColor.Green("green")+" yellow")+" magenta"), "\x1B[35mmagenta \x1B[33myellow \x1B[36mcyan\x1B[33m \x1B[31mred\x1B[33m \x1B[32mgreen\x1B[33m yellow\x1B[35m magenta\x1B[39m")
+	assert.Equal(t, eColor.Bold("bold "+eColor.Red("你好 "+eColor.Dim("🌛")+" 123")+" bold"), "\x1B[1mbold \x1B[31m你好 \x1B[2m🌛\x1B[22m\x1B[1m 123\x1B[39m bold\x1B[22m")
+	assert.Equal(t, eColor.Magenta("你好 "+eColor.Yellow("黄色 "+eColor.Cyan("123")+" "+eColor.Red("red")+" "+eColor.Green("green")+" 黄色")+" magenta"), "\x1B[35m你好 \x1B[33m黄色 \x1B[36m123\x1B[33m \x1B[31mred\x1B[33m \x1B[32mgreen\x1B[33m 黄色\x1B[35m magenta\x1B[39m")
 }
 
 func Test_empty(t *testing.T) {
