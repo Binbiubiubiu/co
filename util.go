@@ -2,6 +2,7 @@ package co
 
 import (
 	"os"
+	"unicode/utf8"
 )
 
 func contains[T comparable](collection []T, element T) bool {
@@ -57,7 +58,7 @@ func hasEnv(vars ...string) bool {
 }
 
 func lenRune(s string) int {
-	return len([]rune(s))
+	return utf8.RuneCountInString(s)
 }
 
 func indexOf(source string, substr string, args ...int) int {
@@ -71,12 +72,15 @@ func indexOf(source string, substr string, args ...int) int {
 	if at >= iLen {
 		return -1
 	}
+
 	input = input[at:]
+	iLen = len(input)
+
 	search := []rune(substr)
 	sLen := len(search)
 	i, j := 0, 0
 	ok := false
-	for i+sLen < iLen {
+	for i+sLen <= iLen {
 		if input[i] != search[j] {
 			i++
 			continue

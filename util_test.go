@@ -37,4 +37,6 @@ func Test_indexOf(t *testing.T) {
 	assert.Equal(t, 0, indexOf("321 123 321", "321", 0))
 	assert.Equal(t, 5, indexOf("你好！我的太阳", "太阳", 2))
 	assert.Equal(t, -1, indexOf("123", "321", 0))
+	assert.Equal(t, 0, indexOf("123", "123", 0))
+	assert.Equal(t, 4, indexOf("我的太阳123", "123"))
 }
