@@ -5,10 +5,6 @@ type Colors struct {
 <% }) %>
 }
 
-func noop(s string) string {
-	return s
-}
-
 // Create a color utility function with a useColor property
 func UseColors(useColor bool) Colors {
 	if useColor {
@@ -25,5 +21,8 @@ func UseColors(useColor bool) Colors {
 
 var colors = CreateColors();
 <% colors.forEach(function (color) { %>
-var <%= color.name %> = colors.<%= color.name %><% }) %>
+func <%= color.name %>(source string) string {
+	return colors.<%= color.name %>(source)
+}
+<% }) %>
     

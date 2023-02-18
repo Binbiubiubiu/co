@@ -52,6 +52,10 @@ func filterEmpty(open string, close string, replace string) ColorFunc {
 // Color formatting functions
 type ColorFunc func(string) string
 
+func noop(source string) string {
+	return source
+}
+
 func buildWithReplace(open int, close int, replace string) ColorFunc {
 	return filterEmpty(fmt.Sprintf("\x1b[%vm", open), fmt.Sprintf("\x1b[%vm", close), replace)
 }

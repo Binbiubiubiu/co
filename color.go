@@ -44,10 +44,6 @@ type Colors struct {
 	BgWhiteBright   ColorFunc
 }
 
-func noop(s string) string {
-	return s
-}
-
 // Create a color utility function with a useColor property
 func UseColors(useColor bool) Colors {
 	if useColor {
@@ -143,44 +139,166 @@ func UseColors(useColor bool) Colors {
 
 var colors = CreateColors()
 
-var Reset = colors.Reset
-var Bold = colors.Bold
-var Dim = colors.Dim
-var Italic = colors.Italic
-var Underline = colors.Underline
-var Inverse = colors.Inverse
-var Hidden = colors.Hidden
-var Strikethrough = colors.Strikethrough
-var Black = colors.Black
-var Red = colors.Red
-var Green = colors.Green
-var Yellow = colors.Yellow
-var Blue = colors.Blue
-var Magenta = colors.Magenta
-var Cyan = colors.Cyan
-var White = colors.White
-var Gray = colors.Gray
-var BgBlack = colors.BgBlack
-var BgRed = colors.BgRed
-var BgGreen = colors.BgGreen
-var BgYellow = colors.BgYellow
-var BgBlue = colors.BgBlue
-var BgMagenta = colors.BgMagenta
-var BgCyan = colors.BgCyan
-var BgWhite = colors.BgWhite
-var BlackBright = colors.BlackBright
-var RedBright = colors.RedBright
-var GreenBright = colors.GreenBright
-var YellowBright = colors.YellowBright
-var BlueBright = colors.BlueBright
-var MagentaBright = colors.MagentaBright
-var CyanBright = colors.CyanBright
-var WhiteBright = colors.WhiteBright
-var BgBlackBright = colors.BgBlackBright
-var BgRedBright = colors.BgRedBright
-var BgGreenBright = colors.BgGreenBright
-var BgYellowBright = colors.BgYellowBright
-var BgBlueBright = colors.BgBlueBright
-var BgMagentaBright = colors.BgMagentaBright
-var BgCyanBright = colors.BgCyanBright
-var BgWhiteBright = colors.BgWhiteBright
+func Reset(source string) string {
+	return colors.Reset(source)
+}
+
+func Bold(source string) string {
+	return colors.Bold(source)
+}
+
+func Dim(source string) string {
+	return colors.Dim(source)
+}
+
+func Italic(source string) string {
+	return colors.Italic(source)
+}
+
+func Underline(source string) string {
+	return colors.Underline(source)
+}
+
+func Inverse(source string) string {
+	return colors.Inverse(source)
+}
+
+func Hidden(source string) string {
+	return colors.Hidden(source)
+}
+
+func Strikethrough(source string) string {
+	return colors.Strikethrough(source)
+}
+
+func Black(source string) string {
+	return colors.Black(source)
+}
+
+func Red(source string) string {
+	return colors.Red(source)
+}
+
+func Green(source string) string {
+	return colors.Green(source)
+}
+
+func Yellow(source string) string {
+	return colors.Yellow(source)
+}
+
+func Blue(source string) string {
+	return colors.Blue(source)
+}
+
+func Magenta(source string) string {
+	return colors.Magenta(source)
+}
+
+func Cyan(source string) string {
+	return colors.Cyan(source)
+}
+
+func White(source string) string {
+	return colors.White(source)
+}
+
+func Gray(source string) string {
+	return colors.Gray(source)
+}
+
+func BgBlack(source string) string {
+	return colors.BgBlack(source)
+}
+
+func BgRed(source string) string {
+	return colors.BgRed(source)
+}
+
+func BgGreen(source string) string {
+	return colors.BgGreen(source)
+}
+
+func BgYellow(source string) string {
+	return colors.BgYellow(source)
+}
+
+func BgBlue(source string) string {
+	return colors.BgBlue(source)
+}
+
+func BgMagenta(source string) string {
+	return colors.BgMagenta(source)
+}
+
+func BgCyan(source string) string {
+	return colors.BgCyan(source)
+}
+
+func BgWhite(source string) string {
+	return colors.BgWhite(source)
+}
+
+func BlackBright(source string) string {
+	return colors.BlackBright(source)
+}
+
+func RedBright(source string) string {
+	return colors.RedBright(source)
+}
+
+func GreenBright(source string) string {
+	return colors.GreenBright(source)
+}
+
+func YellowBright(source string) string {
+	return colors.YellowBright(source)
+}
+
+func BlueBright(source string) string {
+	return colors.BlueBright(source)
+}
+
+func MagentaBright(source string) string {
+	return colors.MagentaBright(source)
+}
+
+func CyanBright(source string) string {
+	return colors.CyanBright(source)
+}
+
+func WhiteBright(source string) string {
+	return colors.WhiteBright(source)
+}
+
+func BgBlackBright(source string) string {
+	return colors.BgBlackBright(source)
+}
+
+func BgRedBright(source string) string {
+	return colors.BgRedBright(source)
+}
+
+func BgGreenBright(source string) string {
+	return colors.BgGreenBright(source)
+}
+
+func BgYellowBright(source string) string {
+	return colors.BgYellowBright(source)
+}
+
+func BgBlueBright(source string) string {
+	return colors.BgBlueBright(source)
+}
+
+func BgMagentaBright(source string) string {
+	return colors.BgMagentaBright(source)
+}
+
+func BgCyanBright(source string) string {
+	return colors.BgCyanBright(source)
+}
+
+func BgWhiteBright(source string) string {
+	return colors.BgWhiteBright(source)
+}
