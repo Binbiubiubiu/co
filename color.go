@@ -45,13 +45,10 @@ type Colors struct {
 }
 
 func noop(s string) string {
-
 	return s
-
 }
 
 var noColors = Colors{
-
 	Reset:               noop,
 	Bold:                noop,
 	Dim:                 noop,
@@ -96,7 +93,6 @@ var noColors = Colors{
 }
 
 var colors = Colors{
-
 	Reset,
 	Bold,
 	Dim,
@@ -139,6 +135,7 @@ var colors = Colors{
 	BgCyanBright,
 	BgWhiteBright,
 }
+
 var Reset = build(0, 0)
 var Bold = buildWithReplace(1, 22, "\x1b[22m\x1b[1m")
 var Dim = buildWithReplace(2, 22, "\x1b[22m\x1b[2m")

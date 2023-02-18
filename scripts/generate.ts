@@ -1,5 +1,13 @@
-import path from 'node:path'
-import { fileURLToPath } from 'node:url';
+
+import {
+  dirname,
+  fromFileUrl,
+  resolve,
+  extname,
+  basename,
+} from "https://deno.land/std@0.177.0/path/mod.ts";
+// @deno-types="npm:@types/ejs@^3.1.2"
+import * as ejs from "npm:ejs@^3.1.8"
 import { Color } from "./types.ts";
 
 const colors: Array<Color> = [
@@ -46,57 +54,25 @@ const colors: Array<Color> = [
   { name: "BgWhiteBright", open: 107, close: 49 },
 ];
 
-function r(...args:string[]):string{
-  return path.resolve(path.dirname(fileURLToPath(import.meta.url)),...args)
+function r(...args: string[]): string {
+  return resolve(dirname(fromFileUrl(import.meta.url)), ...args);
+}
+
+function filename(path:string){
+  path = basename(path)
+  return path.replace(new RegExp(extname(path)),"")
 }
 
 async function generateCode(colors: Array<Color>) {
-  let code = `
-  package co\n\n
-type Colors struct {\n
-  `;
-  for (const co of colors) {
-    code += `${co.name}           ColorFunc\n`;
-  }
-  code += `
-}\n
-func noop(s string) string {\n
-	return s\n
-}\n
-\n
-var noColors = Colors{\n
-`;
-  for (const co of colors) {
-    code += `${co.name}:noop,\n`;
-  }
-  code += `
-
-}\n
-
-var colors = Colors{\n
-`;
-  for (const co of colors) {
-    code += `${co.name},\n`;
-  }
-  code += `}\n`;
-
-  for (const co of colors) {
-    code += `var ${co.name} = ${
-      co.replace
-        ? `buildWithReplace(${co.open}, ${co.close},${co.replace})`
-        : `build(${co.open}, ${co.close})`
-    }\n`;
-  }
-
-  const encoder = new TextEncoder();
-  const data = encoder.encode(code);
-  Deno.cwd()
-  await Deno.writeFile(r("../color.go"),data)
+  const FILE_NAME = "color.go"
+  const code = await ejs.renderFile(r(`./${filename(FILE_NAME)}.ejs`),{colors})
+  await Deno.writeFile(r("..",FILE_NAME), new TextEncoder().encode(code));
 
   Deno.run({
-    cmd:["go","fmt","color.go"]
-  })
-
+    cmd: ["go", "fmt", FILE_NAME],
+    stdout:"null"
+  });
+  console.log(`✨ generate ${FILE_NAME} success!!`)
 }
 
 // Learn more at https://deno.land/manual/examples/module_metadata#concepts
