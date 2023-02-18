@@ -23,7 +23,7 @@ func main() {
 
 ```
 
-## Branch
+## Bench
 
 ```sh
 $ go test -bench=.   
