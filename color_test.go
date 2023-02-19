@@ -10,12 +10,6 @@ import (
 	gookitColor "github.com/gookit/color"
 )
 
-type expectedColor struct {
-	f     StyleFunc
-	open  string
-	close string
-}
-
 var eColor = UseStyles(true)
 
 func decode(p any) string {
