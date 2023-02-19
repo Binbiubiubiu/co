@@ -8,9 +8,9 @@ import {
 } from "https://deno.land/std@0.177.0/path/mod.ts";
 // @deno-types="npm:@types/ejs@^3.1.2"
 import * as ejs from "npm:ejs@^3.1.8"
-import { Color } from "./types.ts";
+import { Style } from "./types.ts";
 
-const styles: Array<Color> = [
+const styles: Array<Style> = [
   { name: "Reset", open: 0, close: 0 },
   { name: "Bold", open: 1, close: 22, replace: '"\\x1b[22m\\x1b[1m"' },
   { name: "Dim", open: 2, close: 22, replace: '"\\x1b[22m\\x1b[2m"' },
@@ -68,8 +68,8 @@ function privateName(name:string){
   return '_'+fw+name.slice(1);
 }
 
-async function generateCode(styles: Array<Color>) {
-  const FILE_NAME = "color.go"
+async function generateCode(styles: Array<Style>) {
+  const FILE_NAME = "style.go"
   for (const it of styles ){
     it.privateName = privateName(it.name)
   }

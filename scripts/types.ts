@@ -1,4 +1,4 @@
-export interface Color {
+export interface Style {
   name: string;
   open: number;
   close: number;
