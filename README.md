@@ -26,16 +26,16 @@ func main() {
 ## Bench
 
 ```sh
-$ go test -bench=.  
+$ go test -bench=. 
 goos: darwin
 goarch: amd64
 pkg: github.com/Binbiubiubiu/co
 cpu: Intel(R) Core(TM) i7-7820HQ CPU @ 2.90GHz
-Benchmark_co-8                   2007859               594.8 ns/op
-Benchmark_fatih_color-8           504742              2027 ns/op
-Benchmark_gookit_color-8         1488526               801.0 ns/op
+Benchmark_co-8                   1929315               630.6 ns/op
+Benchmark_fatih_color-8           483981              2132 ns/op
+Benchmark_gookit_color-8         1450688               844.1 ns/op
 PASS
-ok      github.com/Binbiubiubiu/co      6.489s
+ok      github.com/Binbiubiubiu/co      10.879s
 ```
 
 ## Thanks
