@@ -1,28 +1,34 @@
 package co
 
-type Colors struct {
-<% colors.forEach(function (color) { %> <%= color.name -%>     ColorFunc
+type Style struct {
+<% styles.forEach(function (s) { %> <%= s.privateName -%>     StyleFunc
 <% }) %>
 }
 
-// Create a color utility function with a useColor property
-func UseColors(useColor bool) Colors {
-	if useColor {
-		return Colors{<% colors.forEach(function (color) { %>
-				<%= color.name %> : build<% if (color.replace) { %>WithReplace<% } %>(<%= color.open %>, <%= color.close %><% if (color.replace) { %>, <%- color.replace %><% } %>),<% }) %>
+<% styles.forEach(function (s) { %>
+func (s *Style) <%= s.name %>(input string) string {
+	return s.<%= s.privateName %>(input)
+}
+<% }) %>
+
+// Create a style utility function with isSupportColor 
+func UseStyles(isColorSupported bool) Style {
+	if isColorSupported {
+		return Style{<% styles.forEach(function (s) { %>
+				<%= s.privateName %> : build<% if (s.replace) { %>WithReplace<% } %>(<%= s.open %>, <%= s.close %><% if (s.replace) { %>, <%- s.replace %><% } %>),<% }) %>
 		}
 	} else {
-		return Colors{
-			<% colors.forEach(function (color) { %><%= color.name %>:noop,
+		return Style{
+			<% styles.forEach(function (s) { %><%= s.privateName %>:noop,
 				<% }) %>
 		}
 	}
 }
 
-var colors = CreateColors();
-<% colors.forEach(function (color) { %>
-func <%= color.name %>(source string) string {
-	return colors.<%= color.name %>(source)
+var _styles = CreateStyles();
+<% styles.forEach(function (s) { %>
+func <%= s.name %>(input string) string {
+	return _styles.<%= s.name %>(input)
 }
 <% }) %>
     

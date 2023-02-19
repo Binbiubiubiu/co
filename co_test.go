@@ -74,16 +74,19 @@ func Test_environment(t *testing.T) {
 
 }
 
-func TestUseColors(t *testing.T) {
-	assert.Equal(t, "\x1b[34mblue\x1b[39m", UseColors(true).Blue("blue"))
-	assert.Equal(t, "nope", UseColors(false).Blue("nope"))
-	assert.Equal(t, "", UseColors(false).Blue(""))
+func TestUseStyles(t *testing.T) {
+	yes := UseStyles(true)
+	no := UseStyles(false)
+	assert.Equal(t, "\x1b[34mblue\x1b[39m", yes.Blue("blue"))
+	assert.Equal(t, "nope", no.Blue("nope"))
+	assert.Equal(t, "", no.Blue(""))
 }
 
 func TestCreateColors(t *testing.T) {
+	style := CreateStyles()
 	if IsColorSupported {
-		assert.Equal(t, "\x1b[34mblue\x1b[39m", CreateColors().Blue("blue"))
+		assert.Equal(t, "\x1b[34mblue\x1b[39m", style.Blue("blue"))
 	} else {
-		assert.Equal(t, "blue", CreateColors().Blue("blue"))
+		assert.Equal(t, "blue", style.Blue("blue"))
 	}
 }

@@ -37,7 +37,7 @@ func clearBleed(i int, source string, open string, close string, replace string)
 	return open + replaceClose(i, source, close, replace) + close
 }
 
-func filterEmpty(open string, close string, replace string) ColorFunc {
+func filterEmpty(open string, close string, replace string) StyleFunc {
 	return func(input string) string {
 		if isEmpty(input) {
 			return ""
@@ -49,22 +49,22 @@ func filterEmpty(open string, close string, replace string) ColorFunc {
 	}
 }
 
-// Color formatting functions
-type ColorFunc func(string) string
+// Style formatting functions
+type StyleFunc func(string) string
 
-func noop(source string) string {
-	return source
+func noop(input string) string {
+	return input
 }
 
-func buildWithReplace(open int, close int, replace string) ColorFunc {
+func buildWithReplace(open int, close int, replace string) StyleFunc {
 	return filterEmpty(fmt.Sprintf("\x1b[%vm", open), fmt.Sprintf("\x1b[%vm", close), replace)
 }
 
-func build(open int, close int) ColorFunc {
+func build(open int, close int) StyleFunc {
 	return buildWithReplace(open, close, "")
 }
 
-// Create a color tool function
-func CreateColors() Colors {
-	return UseColors(IsColorSupported)
+// Create a ansi-style tool function
+func CreateStyles() Style {
+	return UseStyles(IsColorSupported)
 }

@@ -1,0 +1,176 @@
+
+[Test_simple - 1]
+"\x1b[40mtest\x1b[49m"
+---
+
+[Test_simple - 2]
+"\x1b[100mtest\x1b[49m"
+---
+
+[Test_simple - 3]
+"\x1b[44mtest\x1b[49m"
+---
+
+[Test_simple - 4]
+"\x1b[104mtest\x1b[49m"
+---
+
+[Test_simple - 5]
+"\x1b[46mtest\x1b[49m"
+---
+
+[Test_simple - 6]
+"\x1b[106mtest\x1b[49m"
+---
+
+[Test_simple - 7]
+"\x1b[42mtest\x1b[49m"
+---
+
+[Test_simple - 8]
+"\x1b[102mtest\x1b[49m"
+---
+
+[Test_simple - 9]
+"\x1b[45mtest\x1b[49m"
+---
+
+[Test_simple - 10]
+"\x1b[105mtest\x1b[49m"
+---
+
+[Test_simple - 11]
+"\x1b[41mtest\x1b[49m"
+---
+
+[Test_simple - 12]
+"\x1b[101mtest\x1b[49m"
+---
+
+[Test_simple - 13]
+"\x1b[47mtest\x1b[49m"
+---
+
+[Test_simple - 14]
+"\x1b[107mtest\x1b[49m"
+---
+
+[Test_simple - 15]
+"\x1b[43mtest\x1b[49m"
+---
+
+[Test_simple - 16]
+"\x1b[103mtest\x1b[49m"
+---
+
+[Test_simple - 17]
+"\x1b[30mtest\x1b[39m"
+---
+
+[Test_simple - 18]
+"\x1b[90mtest\x1b[39m"
+---
+
+[Test_simple - 19]
+"\x1b[34mtest\x1b[39m"
+---
+
+[Test_simple - 20]
+"\x1b[94mtest\x1b[39m"
+---
+
+[Test_simple - 21]
+"\x1b[1mtest\x1b[22m"
+---
+
+[Test_simple - 22]
+"\x1b[36mtest\x1b[39m"
+---
+
+[Test_simple - 23]
+"\x1b[96mtest\x1b[39m"
+---
+
+[Test_simple - 24]
+"\x1b[2mtest\x1b[22m"
+---
+
+[Test_simple - 25]
+"\x1b[90mtest\x1b[39m"
+---
+
+[Test_simple - 26]
+"\x1b[32mtest\x1b[39m"
+---
+
+[Test_simple - 27]
+"\x1b[92mtest\x1b[39m"
+---
+
+[Test_simple - 28]
+"\x1b[8mtest\x1b[28m"
+---
+
+[Test_simple - 29]
+"\x1b[7mtest\x1b[27m"
+---
+
+[Test_simple - 30]
+"\x1b[3mtest\x1b[23m"
+---
+
+[Test_simple - 31]
+"\x1b[35mtest\x1b[39m"
+---
+
+[Test_simple - 32]
+"\x1b[95mtest\x1b[39m"
+---
+
+[Test_simple - 33]
+"\x1b[31mtest\x1b[39m"
+---
+
+[Test_simple - 34]
+"\x1b[91mtest\x1b[39m"
+---
+
+[Test_simple - 35]
+"\x1b[0mtest\x1b[0m"
+---
+
+[Test_simple - 36]
+"\x1b[9mtest\x1b[29m"
+---
+
+[Test_simple - 37]
+"\x1b[4mtest\x1b[24m"
+---
+
+[Test_simple - 38]
+"\x1b[37mtest\x1b[39m"
+---
+
+[Test_simple - 39]
+"\x1b[97mtest\x1b[39m"
+---
+
+[Test_simple - 40]
+"\x1b[33mtest\x1b[39m"
+---
+
+[Test_simple - 41]
+"\x1b[93mtest\x1b[39m"
+---
+
+[Test_nesting - 1]
+"\x1b[1mbold \x1b[31m你好 \x1b[2m🌛\x1b[22m\x1b[1m 123\x1b[39m bold\x1b[22m"
+---
+
+[Test_nesting - 2]
+"\x1b[35m你好 \x1b[33m黄色 \x1b[36m123\x1b[33m \x1b[31mred\x1b[33m \x1b[32mgreen\x1b[33m 黄色\x1b[35m magenta\x1b[39m"
+---
+
+[Test_empty - 1]
+
+---

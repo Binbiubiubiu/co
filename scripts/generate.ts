@@ -10,7 +10,7 @@ import {
 import * as ejs from "npm:ejs@^3.1.8"
 import { Color } from "./types.ts";
 
-const colors: Array<Color> = [
+const styles: Array<Color> = [
   { name: "Reset", open: 0, close: 0 },
   { name: "Bold", open: 1, close: 22, replace: '"\\x1b[22m\\x1b[1m"' },
   { name: "Dim", open: 2, close: 22, replace: '"\\x1b[22m\\x1b[2m"' },
@@ -63,9 +63,17 @@ function filename(path:string){
   return path.replace(new RegExp(extname(path)),"")
 }
 
-async function generateCode(colors: Array<Color>) {
+function privateName(name:string){
+  const fw = name[0].toLowerCase()
+  return '_'+fw+name.slice(1);
+}
+
+async function generateCode(styles: Array<Color>) {
   const FILE_NAME = "color.go"
-  const code = await ejs.renderFile(r(`./${filename(FILE_NAME)}.ejs`),{colors})
+  for (const it of styles ){
+    it.privateName = privateName(it.name)
+  }
+  const code = await ejs.renderFile(r(`./${filename(FILE_NAME)}.ejs`),{styles})
   await Deno.writeFile(r("..",FILE_NAME), new TextEncoder().encode(code));
 
   Deno.run({
@@ -77,5 +85,5 @@ async function generateCode(colors: Array<Color>) {
 
 // Learn more at https://deno.land/manual/examples/module_metadata#concepts
 if (import.meta.main) {
-  generateCode(colors);
+  generateCode(styles);
 }

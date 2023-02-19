@@ -1,304 +1,468 @@
 package co
 
-type Colors struct {
-	Reset           ColorFunc
-	Bold            ColorFunc
-	Dim             ColorFunc
-	Italic          ColorFunc
-	Underline       ColorFunc
-	Inverse         ColorFunc
-	Hidden          ColorFunc
-	Strikethrough   ColorFunc
-	Black           ColorFunc
-	Red             ColorFunc
-	Green           ColorFunc
-	Yellow          ColorFunc
-	Blue            ColorFunc
-	Magenta         ColorFunc
-	Cyan            ColorFunc
-	White           ColorFunc
-	Gray            ColorFunc
-	BgBlack         ColorFunc
-	BgRed           ColorFunc
-	BgGreen         ColorFunc
-	BgYellow        ColorFunc
-	BgBlue          ColorFunc
-	BgMagenta       ColorFunc
-	BgCyan          ColorFunc
-	BgWhite         ColorFunc
-	BlackBright     ColorFunc
-	RedBright       ColorFunc
-	GreenBright     ColorFunc
-	YellowBright    ColorFunc
-	BlueBright      ColorFunc
-	MagentaBright   ColorFunc
-	CyanBright      ColorFunc
-	WhiteBright     ColorFunc
-	BgBlackBright   ColorFunc
-	BgRedBright     ColorFunc
-	BgGreenBright   ColorFunc
-	BgYellowBright  ColorFunc
-	BgBlueBright    ColorFunc
-	BgMagentaBright ColorFunc
-	BgCyanBright    ColorFunc
-	BgWhiteBright   ColorFunc
+type Style struct {
+	_reset           StyleFunc
+	_bold            StyleFunc
+	_dim             StyleFunc
+	_italic          StyleFunc
+	_underline       StyleFunc
+	_inverse         StyleFunc
+	_hidden          StyleFunc
+	_strikethrough   StyleFunc
+	_black           StyleFunc
+	_red             StyleFunc
+	_green           StyleFunc
+	_yellow          StyleFunc
+	_blue            StyleFunc
+	_magenta         StyleFunc
+	_cyan            StyleFunc
+	_white           StyleFunc
+	_gray            StyleFunc
+	_bgBlack         StyleFunc
+	_bgRed           StyleFunc
+	_bgGreen         StyleFunc
+	_bgYellow        StyleFunc
+	_bgBlue          StyleFunc
+	_bgMagenta       StyleFunc
+	_bgCyan          StyleFunc
+	_bgWhite         StyleFunc
+	_blackBright     StyleFunc
+	_redBright       StyleFunc
+	_greenBright     StyleFunc
+	_yellowBright    StyleFunc
+	_blueBright      StyleFunc
+	_magentaBright   StyleFunc
+	_cyanBright      StyleFunc
+	_whiteBright     StyleFunc
+	_bgBlackBright   StyleFunc
+	_bgRedBright     StyleFunc
+	_bgGreenBright   StyleFunc
+	_bgYellowBright  StyleFunc
+	_bgBlueBright    StyleFunc
+	_bgMagentaBright StyleFunc
+	_bgCyanBright    StyleFunc
+	_bgWhiteBright   StyleFunc
 }
 
-// Create a color utility function with a useColor property
-func UseColors(useColor bool) Colors {
-	if useColor {
-		return Colors{
-			Reset:           build(0, 0),
-			Bold:            buildWithReplace(1, 22, "\x1b[22m\x1b[1m"),
-			Dim:             buildWithReplace(2, 22, "\x1b[22m\x1b[2m"),
-			Italic:          build(3, 23),
-			Underline:       build(4, 24),
-			Inverse:         build(7, 27),
-			Hidden:          build(8, 28),
-			Strikethrough:   build(9, 29),
-			Black:           build(30, 39),
-			Red:             build(31, 39),
-			Green:           build(32, 39),
-			Yellow:          build(33, 39),
-			Blue:            build(34, 39),
-			Magenta:         build(35, 39),
-			Cyan:            build(36, 39),
-			White:           build(37, 39),
-			Gray:            build(90, 39),
-			BgBlack:         build(40, 49),
-			BgRed:           build(41, 49),
-			BgGreen:         build(42, 49),
-			BgYellow:        build(43, 49),
-			BgBlue:          build(44, 49),
-			BgMagenta:       build(45, 49),
-			BgCyan:          build(46, 49),
-			BgWhite:         build(47, 49),
-			BlackBright:     build(90, 39),
-			RedBright:       build(91, 39),
-			GreenBright:     build(92, 39),
-			YellowBright:    build(93, 39),
-			BlueBright:      build(94, 39),
-			MagentaBright:   build(95, 39),
-			CyanBright:      build(96, 39),
-			WhiteBright:     build(97, 39),
-			BgBlackBright:   build(100, 49),
-			BgRedBright:     build(101, 49),
-			BgGreenBright:   build(102, 49),
-			BgYellowBright:  build(103, 49),
-			BgBlueBright:    build(104, 49),
-			BgMagentaBright: build(105, 49),
-			BgCyanBright:    build(106, 49),
-			BgWhiteBright:   build(107, 49),
+func (s *Style) Reset(input string) string {
+	return s._reset(input)
+}
+
+func (s *Style) Bold(input string) string {
+	return s._bold(input)
+}
+
+func (s *Style) Dim(input string) string {
+	return s._dim(input)
+}
+
+func (s *Style) Italic(input string) string {
+	return s._italic(input)
+}
+
+func (s *Style) Underline(input string) string {
+	return s._underline(input)
+}
+
+func (s *Style) Inverse(input string) string {
+	return s._inverse(input)
+}
+
+func (s *Style) Hidden(input string) string {
+	return s._hidden(input)
+}
+
+func (s *Style) Strikethrough(input string) string {
+	return s._strikethrough(input)
+}
+
+func (s *Style) Black(input string) string {
+	return s._black(input)
+}
+
+func (s *Style) Red(input string) string {
+	return s._red(input)
+}
+
+func (s *Style) Green(input string) string {
+	return s._green(input)
+}
+
+func (s *Style) Yellow(input string) string {
+	return s._yellow(input)
+}
+
+func (s *Style) Blue(input string) string {
+	return s._blue(input)
+}
+
+func (s *Style) Magenta(input string) string {
+	return s._magenta(input)
+}
+
+func (s *Style) Cyan(input string) string {
+	return s._cyan(input)
+}
+
+func (s *Style) White(input string) string {
+	return s._white(input)
+}
+
+func (s *Style) Gray(input string) string {
+	return s._gray(input)
+}
+
+func (s *Style) BgBlack(input string) string {
+	return s._bgBlack(input)
+}
+
+func (s *Style) BgRed(input string) string {
+	return s._bgRed(input)
+}
+
+func (s *Style) BgGreen(input string) string {
+	return s._bgGreen(input)
+}
+
+func (s *Style) BgYellow(input string) string {
+	return s._bgYellow(input)
+}
+
+func (s *Style) BgBlue(input string) string {
+	return s._bgBlue(input)
+}
+
+func (s *Style) BgMagenta(input string) string {
+	return s._bgMagenta(input)
+}
+
+func (s *Style) BgCyan(input string) string {
+	return s._bgCyan(input)
+}
+
+func (s *Style) BgWhite(input string) string {
+	return s._bgWhite(input)
+}
+
+func (s *Style) BlackBright(input string) string {
+	return s._blackBright(input)
+}
+
+func (s *Style) RedBright(input string) string {
+	return s._redBright(input)
+}
+
+func (s *Style) GreenBright(input string) string {
+	return s._greenBright(input)
+}
+
+func (s *Style) YellowBright(input string) string {
+	return s._yellowBright(input)
+}
+
+func (s *Style) BlueBright(input string) string {
+	return s._blueBright(input)
+}
+
+func (s *Style) MagentaBright(input string) string {
+	return s._magentaBright(input)
+}
+
+func (s *Style) CyanBright(input string) string {
+	return s._cyanBright(input)
+}
+
+func (s *Style) WhiteBright(input string) string {
+	return s._whiteBright(input)
+}
+
+func (s *Style) BgBlackBright(input string) string {
+	return s._bgBlackBright(input)
+}
+
+func (s *Style) BgRedBright(input string) string {
+	return s._bgRedBright(input)
+}
+
+func (s *Style) BgGreenBright(input string) string {
+	return s._bgGreenBright(input)
+}
+
+func (s *Style) BgYellowBright(input string) string {
+	return s._bgYellowBright(input)
+}
+
+func (s *Style) BgBlueBright(input string) string {
+	return s._bgBlueBright(input)
+}
+
+func (s *Style) BgMagentaBright(input string) string {
+	return s._bgMagentaBright(input)
+}
+
+func (s *Style) BgCyanBright(input string) string {
+	return s._bgCyanBright(input)
+}
+
+func (s *Style) BgWhiteBright(input string) string {
+	return s._bgWhiteBright(input)
+}
+
+// Create a style utility function with isSupportColor
+func UseStyles(isColorSupported bool) Style {
+	if isColorSupported {
+		return Style{
+			_reset:           build(0, 0),
+			_bold:            buildWithReplace(1, 22, "\x1b[22m\x1b[1m"),
+			_dim:             buildWithReplace(2, 22, "\x1b[22m\x1b[2m"),
+			_italic:          build(3, 23),
+			_underline:       build(4, 24),
+			_inverse:         build(7, 27),
+			_hidden:          build(8, 28),
+			_strikethrough:   build(9, 29),
+			_black:           build(30, 39),
+			_red:             build(31, 39),
+			_green:           build(32, 39),
+			_yellow:          build(33, 39),
+			_blue:            build(34, 39),
+			_magenta:         build(35, 39),
+			_cyan:            build(36, 39),
+			_white:           build(37, 39),
+			_gray:            build(90, 39),
+			_bgBlack:         build(40, 49),
+			_bgRed:           build(41, 49),
+			_bgGreen:         build(42, 49),
+			_bgYellow:        build(43, 49),
+			_bgBlue:          build(44, 49),
+			_bgMagenta:       build(45, 49),
+			_bgCyan:          build(46, 49),
+			_bgWhite:         build(47, 49),
+			_blackBright:     build(90, 39),
+			_redBright:       build(91, 39),
+			_greenBright:     build(92, 39),
+			_yellowBright:    build(93, 39),
+			_blueBright:      build(94, 39),
+			_magentaBright:   build(95, 39),
+			_cyanBright:      build(96, 39),
+			_whiteBright:     build(97, 39),
+			_bgBlackBright:   build(100, 49),
+			_bgRedBright:     build(101, 49),
+			_bgGreenBright:   build(102, 49),
+			_bgYellowBright:  build(103, 49),
+			_bgBlueBright:    build(104, 49),
+			_bgMagentaBright: build(105, 49),
+			_bgCyanBright:    build(106, 49),
+			_bgWhiteBright:   build(107, 49),
 		}
 	} else {
-		return Colors{
-			Reset:           noop,
-			Bold:            noop,
-			Dim:             noop,
-			Italic:          noop,
-			Underline:       noop,
-			Inverse:         noop,
-			Hidden:          noop,
-			Strikethrough:   noop,
-			Black:           noop,
-			Red:             noop,
-			Green:           noop,
-			Yellow:          noop,
-			Blue:            noop,
-			Magenta:         noop,
-			Cyan:            noop,
-			White:           noop,
-			Gray:            noop,
-			BgBlack:         noop,
-			BgRed:           noop,
-			BgGreen:         noop,
-			BgYellow:        noop,
-			BgBlue:          noop,
-			BgMagenta:       noop,
-			BgCyan:          noop,
-			BgWhite:         noop,
-			BlackBright:     noop,
-			RedBright:       noop,
-			GreenBright:     noop,
-			YellowBright:    noop,
-			BlueBright:      noop,
-			MagentaBright:   noop,
-			CyanBright:      noop,
-			WhiteBright:     noop,
-			BgBlackBright:   noop,
-			BgRedBright:     noop,
-			BgGreenBright:   noop,
-			BgYellowBright:  noop,
-			BgBlueBright:    noop,
-			BgMagentaBright: noop,
-			BgCyanBright:    noop,
-			BgWhiteBright:   noop,
+		return Style{
+			_reset:           noop,
+			_bold:            noop,
+			_dim:             noop,
+			_italic:          noop,
+			_underline:       noop,
+			_inverse:         noop,
+			_hidden:          noop,
+			_strikethrough:   noop,
+			_black:           noop,
+			_red:             noop,
+			_green:           noop,
+			_yellow:          noop,
+			_blue:            noop,
+			_magenta:         noop,
+			_cyan:            noop,
+			_white:           noop,
+			_gray:            noop,
+			_bgBlack:         noop,
+			_bgRed:           noop,
+			_bgGreen:         noop,
+			_bgYellow:        noop,
+			_bgBlue:          noop,
+			_bgMagenta:       noop,
+			_bgCyan:          noop,
+			_bgWhite:         noop,
+			_blackBright:     noop,
+			_redBright:       noop,
+			_greenBright:     noop,
+			_yellowBright:    noop,
+			_blueBright:      noop,
+			_magentaBright:   noop,
+			_cyanBright:      noop,
+			_whiteBright:     noop,
+			_bgBlackBright:   noop,
+			_bgRedBright:     noop,
+			_bgGreenBright:   noop,
+			_bgYellowBright:  noop,
+			_bgBlueBright:    noop,
+			_bgMagentaBright: noop,
+			_bgCyanBright:    noop,
+			_bgWhiteBright:   noop,
 		}
 	}
 }
 
-var colors = CreateColors()
+var _styles = CreateStyles()
 
-func Reset(source string) string {
-	return colors.Reset(source)
+func Reset(input string) string {
+	return _styles.Reset(input)
 }
 
-func Bold(source string) string {
-	return colors.Bold(source)
+func Bold(input string) string {
+	return _styles.Bold(input)
 }
 
-func Dim(source string) string {
-	return colors.Dim(source)
+func Dim(input string) string {
+	return _styles.Dim(input)
 }
 
-func Italic(source string) string {
-	return colors.Italic(source)
+func Italic(input string) string {
+	return _styles.Italic(input)
 }
 
-func Underline(source string) string {
-	return colors.Underline(source)
+func Underline(input string) string {
+	return _styles.Underline(input)
 }
 
-func Inverse(source string) string {
-	return colors.Inverse(source)
+func Inverse(input string) string {
+	return _styles.Inverse(input)
 }
 
-func Hidden(source string) string {
-	return colors.Hidden(source)
+func Hidden(input string) string {
+	return _styles.Hidden(input)
 }
 
-func Strikethrough(source string) string {
-	return colors.Strikethrough(source)
+func Strikethrough(input string) string {
+	return _styles.Strikethrough(input)
 }
 
-func Black(source string) string {
-	return colors.Black(source)
+func Black(input string) string {
+	return _styles.Black(input)
 }
 
-func Red(source string) string {
-	return colors.Red(source)
+func Red(input string) string {
+	return _styles.Red(input)
 }
 
-func Green(source string) string {
-	return colors.Green(source)
+func Green(input string) string {
+	return _styles.Green(input)
 }
 
-func Yellow(source string) string {
-	return colors.Yellow(source)
+func Yellow(input string) string {
+	return _styles.Yellow(input)
 }
 
-func Blue(source string) string {
-	return colors.Blue(source)
+func Blue(input string) string {
+	return _styles.Blue(input)
 }
 
-func Magenta(source string) string {
-	return colors.Magenta(source)
+func Magenta(input string) string {
+	return _styles.Magenta(input)
 }
 
-func Cyan(source string) string {
-	return colors.Cyan(source)
+func Cyan(input string) string {
+	return _styles.Cyan(input)
 }
 
-func White(source string) string {
-	return colors.White(source)
+func White(input string) string {
+	return _styles.White(input)
 }
 
-func Gray(source string) string {
-	return colors.Gray(source)
+func Gray(input string) string {
+	return _styles.Gray(input)
 }
 
-func BgBlack(source string) string {
-	return colors.BgBlack(source)
+func BgBlack(input string) string {
+	return _styles.BgBlack(input)
 }
 
-func BgRed(source string) string {
-	return colors.BgRed(source)
+func BgRed(input string) string {
+	return _styles.BgRed(input)
 }
 
-func BgGreen(source string) string {
-	return colors.BgGreen(source)
+func BgGreen(input string) string {
+	return _styles.BgGreen(input)
 }
 
-func BgYellow(source string) string {
-	return colors.BgYellow(source)
+func BgYellow(input string) string {
+	return _styles.BgYellow(input)
 }
 
-func BgBlue(source string) string {
-	return colors.BgBlue(source)
+func BgBlue(input string) string {
+	return _styles.BgBlue(input)
 }
 
-func BgMagenta(source string) string {
-	return colors.BgMagenta(source)
+func BgMagenta(input string) string {
+	return _styles.BgMagenta(input)
 }
 
-func BgCyan(source string) string {
-	return colors.BgCyan(source)
+func BgCyan(input string) string {
+	return _styles.BgCyan(input)
 }
 
-func BgWhite(source string) string {
-	return colors.BgWhite(source)
+func BgWhite(input string) string {
+	return _styles.BgWhite(input)
 }
 
-func BlackBright(source string) string {
-	return colors.BlackBright(source)
+func BlackBright(input string) string {
+	return _styles.BlackBright(input)
 }
 
-func RedBright(source string) string {
-	return colors.RedBright(source)
+func RedBright(input string) string {
+	return _styles.RedBright(input)
 }
 
-func GreenBright(source string) string {
-	return colors.GreenBright(source)
+func GreenBright(input string) string {
+	return _styles.GreenBright(input)
 }
 
-func YellowBright(source string) string {
-	return colors.YellowBright(source)
+func YellowBright(input string) string {
+	return _styles.YellowBright(input)
 }
 
-func BlueBright(source string) string {
-	return colors.BlueBright(source)
+func BlueBright(input string) string {
+	return _styles.BlueBright(input)
 }
 
-func MagentaBright(source string) string {
-	return colors.MagentaBright(source)
+func MagentaBright(input string) string {
+	return _styles.MagentaBright(input)
 }
 
-func CyanBright(source string) string {
-	return colors.CyanBright(source)
+func CyanBright(input string) string {
+	return _styles.CyanBright(input)
 }
 
-func WhiteBright(source string) string {
-	return colors.WhiteBright(source)
+func WhiteBright(input string) string {
+	return _styles.WhiteBright(input)
 }
 
-func BgBlackBright(source string) string {
-	return colors.BgBlackBright(source)
+func BgBlackBright(input string) string {
+	return _styles.BgBlackBright(input)
 }
 
-func BgRedBright(source string) string {
-	return colors.BgRedBright(source)
+func BgRedBright(input string) string {
+	return _styles.BgRedBright(input)
 }
 
-func BgGreenBright(source string) string {
-	return colors.BgGreenBright(source)
+func BgGreenBright(input string) string {
+	return _styles.BgGreenBright(input)
 }
 
-func BgYellowBright(source string) string {
-	return colors.BgYellowBright(source)
+func BgYellowBright(input string) string {
+	return _styles.BgYellowBright(input)
 }
 
-func BgBlueBright(source string) string {
-	return colors.BgBlueBright(source)
+func BgBlueBright(input string) string {
+	return _styles.BgBlueBright(input)
 }
 
-func BgMagentaBright(source string) string {
-	return colors.BgMagentaBright(source)
+func BgMagentaBright(input string) string {
+	return _styles.BgMagentaBright(input)
 }
 
-func BgCyanBright(source string) string {
-	return colors.BgCyanBright(source)
+func BgCyanBright(input string) string {
+	return _styles.BgCyanBright(input)
 }
 
-func BgWhiteBright(source string) string {
-	return colors.BgWhiteBright(source)
+func BgWhiteBright(input string) string {
+	return _styles.BgWhiteBright(input)
 }
