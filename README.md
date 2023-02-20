@@ -31,11 +31,11 @@ goos: darwin
 goarch: amd64
 pkg: github.com/Binbiubiubiu/co
 cpu: Intel(R) Core(TM) i7-7820HQ CPU @ 2.90GHz
-Benchmark_co-8                   1929315               630.6 ns/op
-Benchmark_fatih_color-8           483981              2132 ns/op
-Benchmark_gookit_color-8         1450688               844.1 ns/op
+Benchmark_co-8                   1986559               606.8 ns/op
+Benchmark_fatih_color-8           534586              2065 ns/op
+Benchmark_gookit_color-8         1463462               804.2 ns/op
 PASS
-ok      github.com/Binbiubiubiu/co      10.879s
+ok      github.com/Binbiubiubiu/co      6.429s
 ```
 
 ## Thanks

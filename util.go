@@ -24,6 +24,7 @@ func substring(source string, start int, suffix ...int) string {
 	r := []rune(source)
 	length := len(r)
 	end := length
+
 	if len(suffix) > 0 {
 		end = suffix[0]
 	}
@@ -32,16 +33,16 @@ func substring(source string, start int, suffix ...int) string {
 		return ""
 	}
 
+	if start == 0 && end == length {
+		return source
+	}
+
 	if start < 0 {
 		start = 0
 	}
 
 	if end > length {
 		end = length
-	}
-
-	if start == 0 && end == length {
-		return source
 	}
 
 	return string(r[start:end])
@@ -78,29 +79,14 @@ func indexOf(source string, substr string, args ...int) int {
 
 	search := []rune(substr)
 	sLen := len(search)
-	i, j := 0, 0
-	ok := false
-	for i+sLen <= iLen {
-		if input[i] != search[j] {
-			i++
-			continue
-		}
-		z := i
-		for j < sLen {
-			if input[z] != search[j] {
-				j = 0
-				break
+
+pin:
+	for i := 0; i+sLen <= iLen; i++ {
+		for j := 0; j < sLen; j++ {
+			if input[i+j] != search[j] {
+				continue pin
 			}
-			z++
-			j++
 		}
-		if j == sLen {
-			ok = true
-			break
-		}
-		i++
-	}
-	if ok {
 		return i + at
 	}
 	return -1
