@@ -20,15 +20,15 @@ func isEmpty[T comparable](v T) bool {
 	return zero == v
 }
 
-func substringNoEnd(str string, s int) string {
+func substringNoEnd(str []rune, s int) []rune {
 	if s <= 0 {
 		return str
 	}
-	return string([]rune(str)[s:])
+	return str[s:]
 }
 
-func substring(str string, s int, e int) string {
-	n := lenRune(str)
+func substring(str []rune, s int, e int) []rune {
+	n := len(str)
 	if s <= 0 && e >= n {
 		return str
 	}
@@ -44,12 +44,7 @@ func substring(str string, s int, e int) string {
 		e = n
 	}
 
-	l := len(str)
-	if l == n {
-		return str[s:e]
-	}
-
-	return string([]rune(str)[s:e])
+	return str[s:e]
 }
 
 func hasEnv(vars ...string) bool {
@@ -66,23 +61,15 @@ func lenRune(s string) int {
 	return utf8.RuneCountInString(s)
 }
 
-func indexOf(source string, substr string, args ...int) int {
-	at := 0
-	if len(args) > 0 {
-		at = args[0]
-	}
+func indexOf(input []rune, search []rune, at uint) int {
 
-	input := []rune(source)
-	iLen := len(input)
-	if at >= iLen {
+	iLen, sLen := len(input), len(search)
+	if int(at) >= iLen {
 		return -1
 	}
 
 	input = input[at:]
 	iLen = len(input)
-
-	search := []rune(substr)
-	sLen := len(search)
 
 pin:
 	for i := 0; i+sLen <= iLen; i++ {
@@ -91,7 +78,7 @@ pin:
 				continue pin
 			}
 		}
-		return i + at
+		return i + int(at)
 	}
 	return -1
 }

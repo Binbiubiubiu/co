@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"runtime"
+	"strings"
 
 	tty "github.com/mattn/go-isatty"
 )
@@ -20,21 +21,28 @@ var (
 		(isForced || (IS_WINDOWS && !isDumbTerminal) || isCompatibleTerminal || isCI)
 )
 
-func replaceClose(i int, source string, close string, replace string) string {
-	head := substring(source, 0, i) + replace
-	tail := substringNoEnd(source, i+lenRune(close))
-	next := indexOf(tail, close)
-	if next < 0 {
-		return head + tail
+func replaceClose(i int, tail []rune, close []rune, replace string) string {
+	lClose := len(close)
+	var sb strings.Builder
+	for i >= 0 {
+		for _, c := range substring(tail, 0, i) {
+			sb.WriteRune(c)
+		}
+		sb.WriteString(replace)
+		tail = substringNoEnd(tail, i+lClose)
+		i = indexOf(tail, close, 0)
 	}
-	return head + replaceClose(next, tail, close, replace)
+	for _, c := range tail {
+		sb.WriteRune(c)
+	}
+	return sb.String()
 }
 
 func clearBleed(i int, source string, open string, close string, replace string) string {
 	if i < 0 {
 		return open + source + close
 	}
-	return open + replaceClose(i, source, close, replace) + close
+	return open + replaceClose(i, []rune(source), []rune(close), replace) + close
 }
 
 func filterEmpty(open string, close string, replace string) StyleFunc {
@@ -45,7 +53,7 @@ func filterEmpty(open string, close string, replace string) StyleFunc {
 		if isEmpty(replace) {
 			replace = open
 		}
-		return clearBleed(indexOf(input, close, lenRune(open)), input, open, close, replace)
+		return clearBleed(indexOf([]rune(input), []rune(close), uint(lenRune(open))), input, open, close, replace)
 	}
 }
 

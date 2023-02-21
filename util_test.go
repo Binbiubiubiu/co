@@ -19,11 +19,11 @@ func Test_isEmpty(t *testing.T) {
 }
 
 func Test_substring(t *testing.T) {
-	assert.Equal(t, "45", substring("123456", 3, 5))
-	assert.Equal(t, "456", substring("123456", 3, 6))
-	assert.Equal(t, "456", substring("123456", 3, 7))
-	assert.Equal(t, "我的", substring("你好！我的太阳", 3, 5))
-	assert.Equal(t, "23", substring("123456", 3, 1))
+	assert.Equal(t, []rune("45"), substring([]rune("123456"), 3, 5))
+	assert.Equal(t, []rune("456"), substring([]rune("123456"), 3, 6))
+	assert.Equal(t, []rune("456"), substring([]rune("123456"), 3, 7))
+	assert.Equal(t, []rune("我的"), substring([]rune("你好！我的太阳"), 3, 5))
+	assert.Equal(t, []rune("23"), substring([]rune("123456"), 3, 1))
 }
 
 func Test_hasEnv(t *testing.T) {
@@ -33,10 +33,10 @@ func Test_hasEnv(t *testing.T) {
 }
 
 func Test_indexOf(t *testing.T) {
-	assert.Equal(t, 8, indexOf("321 123 321", "321", 3))
-	assert.Equal(t, 0, indexOf("321 123 321", "321", 0))
-	assert.Equal(t, 5, indexOf("你好！我的太阳", "太阳", 2))
-	assert.Equal(t, -1, indexOf("123", "321", 0))
-	assert.Equal(t, 0, indexOf("123", "123", 0))
-	assert.Equal(t, 4, indexOf("我的太阳123", "123"))
+	assert.Equal(t, 8, indexOf([]rune("321 123 321"), []rune("321"), 3))
+	assert.Equal(t, 0, indexOf([]rune("321 123 321"), []rune("321"), 0))
+	assert.Equal(t, 5, indexOf([]rune("你好！我的太阳"), []rune("太阳"), 2))
+	assert.Equal(t, -1, indexOf([]rune("123"), []rune("321"), 0))
+	assert.Equal(t, 0, indexOf([]rune("123"), []rune("123"), 0))
+	assert.Equal(t, 4, indexOf([]rune("我的太阳123"), []rune("123"), 0))
 }
