@@ -22,7 +22,7 @@ var (
 
 func replaceClose(i int, source string, close string, replace string) string {
 	head := substring(source, 0, i) + replace
-	tail := substring(source, i+lenRune(close))
+	tail := substringNoEnd(source, i+lenRune(close))
 	next := indexOf(tail, close)
 	if next < 0 {
 		return head + tail

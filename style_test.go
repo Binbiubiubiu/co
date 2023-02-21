@@ -31,6 +31,8 @@ func Test_simple(t *testing.T) {
 }
 
 func Test_nesting(t *testing.T) {
+	snaps.MatchSnapshot(t, decode(eColor.Bold("bold "+eColor.Red("red "+eColor.Dim("dim")+" red")+" bold")))
+	snaps.MatchSnapshot(t, decode(eColor.Magenta("magenta "+eColor.Yellow("yellow "+eColor.Cyan("cyan")+" "+eColor.Red("red")+" "+eColor.Green("green")+" yellow")+" magenta")))
 	snaps.MatchSnapshot(t, decode(eColor.Bold("bold "+eColor.Red("你好 "+eColor.Dim("🌛")+" 123")+" bold")))
 	snaps.MatchSnapshot(t, decode(eColor.Magenta("你好 "+eColor.Yellow("黄色 "+eColor.Cyan("123")+" "+eColor.Red("red")+" "+eColor.Green("green")+" 黄色")+" magenta")))
 }

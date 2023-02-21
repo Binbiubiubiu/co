@@ -1,4 +1,20 @@
 
+[Test_nesting - 1]
+"\x1b[1mbold \x1b[31mred \x1b[2mdim\x1b[22m\x1b[1m red\x1b[39m bold\x1b[22m"
+---
+
+[Test_nesting - 2]
+"\x1b[35mmagenta \x1b[33myellow \x1b[36mcyan\x1b[33m \x1b[31mred\x1b[33m \x1b[32mgreen\x1b[33m yellow\x1b[35m magenta\x1b[39m"
+---
+
+[Test_nesting - 3]
+"\x1b[1mbold \x1b[31m你好 \x1b[2m🌛\x1b[22m\x1b[1m 123\x1b[39m bold\x1b[22m"
+---
+
+[Test_nesting - 4]
+"\x1b[35m你好 \x1b[33m黄色 \x1b[36m123\x1b[33m \x1b[31mred\x1b[33m \x1b[32mgreen\x1b[33m 黄色\x1b[35m magenta\x1b[39m"
+---
+
 [Test_simple - 1]
 "\x1b[40mtest\x1b[49m"
 ---
@@ -161,14 +177,6 @@
 
 [Test_simple - 41]
 "\x1b[93mtest\x1b[39m"
----
-
-[Test_nesting - 1]
-"\x1b[1mbold \x1b[31m你好 \x1b[2m🌛\x1b[22m\x1b[1m 123\x1b[39m bold\x1b[22m"
----
-
-[Test_nesting - 2]
-"\x1b[35m你好 \x1b[33m黄色 \x1b[36m123\x1b[33m \x1b[31mred\x1b[33m \x1b[32mgreen\x1b[33m 黄色\x1b[35m magenta\x1b[39m"
 ---
 
 [Test_empty - 1]

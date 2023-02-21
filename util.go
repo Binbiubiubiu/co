@@ -20,32 +20,36 @@ func isEmpty[T comparable](v T) bool {
 	return zero == v
 }
 
-func substring(source string, start int, suffix ...int) string {
-	r := []rune(source)
-	length := len(r)
-	end := length
+func substringNoEnd(str string, s int) string {
+	if s <= 0 {
+		return str
+	}
+	return string([]rune(str)[s:])
+}
 
-	if len(suffix) > 0 {
-		end = suffix[0]
+func substring(str string, s int, e int) string {
+	n := lenRune(str)
+	if s <= 0 && e >= n {
+		return str
 	}
 
-	if start > end {
-		return ""
+	if s > e {
+		s, e = e, s
 	}
 
-	if start == 0 && end == length {
-		return source
+	if s < 0 {
+		s = 0
+	}
+	if e > n {
+		e = n
 	}
 
-	if start < 0 {
-		start = 0
+	l := len(str)
+	if l == n {
+		return str[s:e]
 	}
 
-	if end > length {
-		end = length
-	}
-
-	return string(r[start:end])
+	return string([]rune(str)[s:e])
 }
 
 func hasEnv(vars ...string) bool {

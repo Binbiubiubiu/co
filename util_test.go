@@ -23,7 +23,7 @@ func Test_substring(t *testing.T) {
 	assert.Equal(t, "456", substring("123456", 3, 6))
 	assert.Equal(t, "456", substring("123456", 3, 7))
 	assert.Equal(t, "我的", substring("你好！我的太阳", 3, 5))
-	assert.Equal(t, "", substring("123456", 3, 1))
+	assert.Equal(t, "23", substring("123456", 3, 1))
 }
 
 func Test_hasEnv(t *testing.T) {
