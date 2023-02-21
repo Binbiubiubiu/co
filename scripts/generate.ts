@@ -73,6 +73,7 @@ async function generateCode(styles: Array<Style>) {
   for (const it of styles ){
     it.privateName = privateName(it.name)
   }
+  console.log(r(`./${filename(FILE_NAME)}.ejs`))
   const code = await ejs.renderFile(r(`./${filename(FILE_NAME)}.ejs`),{styles})
   await Deno.writeFile(r("..",FILE_NAME), new TextEncoder().encode(code));
 

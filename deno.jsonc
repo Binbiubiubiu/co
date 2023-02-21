@@ -1,5 +1,5 @@
 {
   "tasks": {
-    "colors": "deno run -A --node-modules-dir scripts/generate.ts"
+    "styles": "deno run -A --node-modules-dir scripts/generate.ts"
   }
 }
