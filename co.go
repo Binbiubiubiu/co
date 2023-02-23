@@ -76,3 +76,12 @@ func build(open int, close int) StyleFunc {
 func CreateStyles() Style {
 	return UseStyles(IsColorSupported)
 }
+
+func Compose(styl ...StyleFunc) func(str string) string {
+	return func(str string) string {
+		for _, c := range styl {
+			str = c(str)
+		}
+		return str
+	}
+}

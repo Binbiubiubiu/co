@@ -5,6 +5,7 @@ import (
 	"os/exec"
 	"testing"
 
+	"github.com/gkampitakis/go-snaps/snaps"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -89,4 +90,8 @@ func TestCreateColors(t *testing.T) {
 	} else {
 		assert.Equal(t, "blue", style.Blue("blue"))
 	}
+}
+
+func TestCompose(t *testing.T) {
+	snaps.MatchSnapshot(t, decode(Compose(eColor.Underline, eColor.Bold, eColor.BgGreen)("underline + bold + bgGreen")))
 }
