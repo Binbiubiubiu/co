@@ -1,4 +1,3 @@
-
 import {
   dirname,
   fromFileUrl,
@@ -7,7 +6,7 @@ import {
   basename,
 } from "https://deno.land/std@0.177.0/path/mod.ts";
 // @deno-types="npm:@types/ejs@^3.1.2"
-import * as ejs from "npm:ejs@^3.1.8"
+import * as ejs from "npm:ejs@^3.1.8";
 import { Style } from "./types.ts";
 
 const styles: Array<Style> = [
@@ -58,30 +57,33 @@ function r(...args: string[]): string {
   return resolve(dirname(fromFileUrl(import.meta.url)), ...args);
 }
 
-function filename(path:string){
-  path = basename(path)
-  return path.replace(new RegExp(extname(path)),"")
+function filename(path: string) {
+  path = basename(path);
+  return path.replace(new RegExp(extname(path)), "");
 }
 
-function privateName(name:string){
-  const fw = name[0].toLowerCase()
-  return '_'+fw+name.slice(1);
+function privateName(name: string) {
+  const fw = name[0].toLowerCase();
+  return "_" + fw + name.slice(1);
 }
 
 async function generateCode(styles: Array<Style>) {
-  const FILE_NAME = "style.go"
-  for (const it of styles ){
-    it.privateName = privateName(it.name)
+  const FILE_NAME = "style.go";
+  for (const it of styles) {
+    it.privateName = privateName(it.name);
   }
-  console.log(r(`./${filename(FILE_NAME)}.ejs`))
-  const code = await ejs.renderFile(r(`./${filename(FILE_NAME)}.ejs`),{styles})
-  await Deno.writeFile(r("..",FILE_NAME), new TextEncoder().encode(code));
-
-  Deno.run({
-    cmd: ["go", "fmt", FILE_NAME],
-    stdout:"null"
+  const code = await ejs.renderFile(r(`./${filename(FILE_NAME)}.ejs`), {
+    styles,
   });
-  console.log(`✨ generate ${FILE_NAME} success!!`)
+  await Deno.writeFile(r("..", FILE_NAME), new TextEncoder().encode(code));
+
+  const p = Deno.run({
+    cmd: ["go", "fmt", FILE_NAME],
+    stdin: "inherit",
+    stdout: "inherit",
+  });
+  await p.status();
+  console.log(`✨ generate ${FILE_NAME} success!!`);
 }
 
 // Learn more at https://deno.land/manual/examples/module_metadata#concepts
