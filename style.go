@@ -209,9 +209,9 @@ func (s *Style) BgWhiteBright(input string) string {
 }
 
 // Create a style utility function with isSupportColor
-func UseStyles(isColorSupported bool) Style {
+func UseStyles(isColorSupported bool) *Style {
 	if isColorSupported {
-		return Style{
+		return &Style{
 			_reset:           build(0, 0),
 			_bold:            buildWithReplace(1, 22, "\x1b[22m\x1b[1m"),
 			_dim:             buildWithReplace(2, 22, "\x1b[22m\x1b[2m"),
@@ -255,7 +255,7 @@ func UseStyles(isColorSupported bool) Style {
 			_bgWhiteBright:   build(107, 49),
 		}
 	} else {
-		return Style{
+		return &Style{
 			_reset:           noop,
 			_bold:            noop,
 			_dim:             noop,

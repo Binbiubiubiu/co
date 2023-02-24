@@ -73,7 +73,7 @@ func build(open int, close int) StyleFunc {
 }
 
 // Create a ansi-style tool function
-func CreateStyles() Style {
+func CreateStyles() *Style {
 	return UseStyles(IsColorSupported)
 }
 
