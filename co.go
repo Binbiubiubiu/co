@@ -9,7 +9,7 @@ import (
 	tty "github.com/mattn/go-isatty"
 )
 
-const IS_WINDOWS = runtime.GOOS == "windows"
+const isWindows = runtime.GOOS == "windows"
 
 var (
 	isDisabled           = hasEnv("NO_COLOR") || contains(os.Args, "--no-color")
@@ -18,7 +18,7 @@ var (
 	isCompatibleTerminal = tty.IsTerminal(os.Stdin.Fd()) && !isDumbTerminal
 	isCI                 = hasEnv("CI", "GITHUB_ACTIONS", "GITLAB_CI", "CIRCLECI")
 	IsColorSupported     = !isDisabled &&
-		(isForced || (IS_WINDOWS && !isDumbTerminal) || isCompatibleTerminal || isCI)
+		(isForced || (isWindows && !isDumbTerminal) || isCompatibleTerminal || isCI)
 )
 
 func replaceClose(i int, tail []rune, close []rune, replace string) string {
