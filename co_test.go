@@ -1,6 +1,7 @@
 package co
 
 import (
+	"fmt"
 	"os"
 	"os/exec"
 	"testing"
@@ -9,7 +10,12 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func Test_environment(t *testing.T) {
+func Example() {
+	fmt.Println(GreenBright("Hello"), BgCyanBright(RedBright("Binbiubiubiu")))
+	fmt.Println(Compose(BgGreen, Blue)("123"))
+}
+
+func TestEnvironment(t *testing.T) {
 	type vars struct {
 		env  map[string]string
 		args []string
